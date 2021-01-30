@@ -78,7 +78,7 @@ const rulesValidation = (req, res) => {
             }
           );
         }
-        // console.log('rule.condition', rule.condition);
+
         for (const value in nestedObjects) {
           if ((rule.condition === 'neq') && (nestedObjects[value] !== conditionValue)) {
             validCondition = true;
@@ -177,7 +177,6 @@ const rulesValidation = (req, res) => {
         if (datakeys[i] === rule.field) {
           for (let j = 0; j < dataValue.length; j++) {
             if ((rule.condition === 'neq') && (dataValue[i] !== conditionValue)) {
-              console.log('neq', data[values]);
               validCondition = true;
             }
 
@@ -190,42 +189,41 @@ const rulesValidation = (req, res) => {
             }
           }
         }
-      }
-      if (validCondition === true) {
-        return res.status(200).json(
-          {
-            message: `field ${rule.field} successfully validated.`,
-            status: 'success',
-            data: {
-              validation: {
-                error: false,
-                field: `${rule.field}`,
-                field_value: `${data[values]}`,
-                condition: `${rule.condition}`,
-                condition_value: `${rule.condition_value}`
+        if (validCondition === true) {
+          return res.status(200).json(
+            {
+              message: `field ${rule.field} successfully validated.`,
+              status: 'success',
+              data: {
+                validation: {
+                  error: false,
+                  field: `${rule.field}`,
+                  field_value: `${data[values]}`,
+                  condition: `${rule.condition}`,
+                  condition_value: `${rule.condition_value}`
+                }
               }
             }
-          }
-        );
-      }
-    }
-
-    if (!validCondition) {
-      return res.status(400).json(
-        {
-          message: `field ${rule.field} failed validation.`,
-          status: 'error',
-          data: {
-            validation: {
-              error: true,
-              field: `${rule.field} `,
-              field_value: `${dataValues}`,
-              condition: `${rule.condition}`,
-              condition_value: `${rule.condition_value}`
-            }
-          }
+          );
         }
-      );
+        if (!validCondition) {
+          return res.status(400).json(
+            {
+              message: `field ${rule.field} failed validation.`,
+              status: 'error',
+              data: {
+                validation: {
+                  error: true,
+                  field: `${rule.field} `,
+                  field_value: `${dataValue[i]}`,
+                  condition: `${rule.condition}`,
+                  condition_value: `${rule.condition_value}`
+                }
+              }
+            }
+          );
+        }
+      }
     }
   }
 };
