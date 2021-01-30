@@ -10,17 +10,14 @@
     "start": "npm run build && node ./build/server.js",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/server.js",
     "test": "cross-env NODE_ENV=test && nyc --require --reporter=html --reporter=text mocha -r @babel/register ./src/tests/index.js --timeout 10000 --recursive --exit || true",
-    "coverage": "nyc npm run test && nyc report --reporter=text-lcov --reporter=lcov | node ./node_modules/coveralls/bin/coveralls.js --verbose",
-    "seeder": "babel-node ./src/config/seeder/seed.js"
+    "coverage": "nyc npm run test && nyc report --reporter=text-lcov --reporter=lcov | node ./node_modules/coveralls/bin/coveralls.js --verbose"
   },
   "author": "Godspower Uche",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.11.13",
-    "mongoose-seed": "^0.6.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

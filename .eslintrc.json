@@ -13,8 +13,18 @@
     },
     "rules": {
         "no-console":"off",
+        "no-undef":"off",
         "consistent-return":"off",
         "comma-dangle": "off",
-        "no-use-before-define":"off"
+        "no-else-return":"off",
+        "prefer-destructuring":"off",
+        "no-prototype-builtins":"off",
+        "no-restricted-syntax": "off",
+        "no-use-before-define":"off",
+        "import/no-extraneous-dependencies": "off",
+        "no-plusplus":"off",
+        "guard-for-in":"off",
+        "no-unused-expressions":"off",
+        "no-nested-ternary":"off"
     }
 }
